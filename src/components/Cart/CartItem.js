@@ -32,7 +32,7 @@ const CartItem = (props) => {
   };
 
   return (
-    <li className={classes.item} key={id}>
+    <li className={classes.item}>
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>

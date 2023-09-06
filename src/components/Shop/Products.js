@@ -10,7 +10,7 @@ const Products = (props) => {
       <h2>Buy your favorite products</h2>
       <ul>
         {props.items.map((cartItem) => (
-          <ProductItem item={cartItem} />
+          <ProductItem item={cartItem} key={cartItem.id} />
         ))}
       </ul>
     </section>

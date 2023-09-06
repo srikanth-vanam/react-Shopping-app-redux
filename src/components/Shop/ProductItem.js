@@ -11,20 +11,21 @@ const ProductItem = (props) => {
   const addToCartHandler = (Item) => {
     const newItems = [...cartItems];
     let flag = false;
-    newItems.forEach((item, index) => {
+    const updatedItems=newItems.map((item) => {
       if (item.id === Item.id) {
         flag = true;
-        newItems[index] = { ...item, quantity: item.quantity + 1 };
+        return{ ...item, quantity: item.quantity + 1 };
       }
+      return item;
     });
     if (!flag) {
-      newItems.push({ ...Item, quantity: 1 });
+      updatedItems.push({ ...Item, quantity: 1 });
     }
-    dispatch(cartActions.setCartItems(newItems));
+    dispatch(cartActions.setCartItems(updatedItems));
   };
 
   return (
-    <li className={classes.item} key={item.id}>
+    <li className={classes.item} >
       <Card>
         <header>
           <h3>{item.title}</h3>
@@ -32,7 +33,7 @@ const ProductItem = (props) => {
         </header>
         <p>{item.description}</p>
         <div className={classes.actions}>
-          <button onClick={() => addToCartHandler(item)}>
+          <button onClick={() => addToCartHandler({...item})}>
             Add to Cart
           </button>
         </div>
